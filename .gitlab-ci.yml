@@ -1,0 +1,35 @@
+image: node:20.12.1
+
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@8.15.6 --activate
+    - pnpm config set store-dir .pnpm-store
+  script:
+    - pnpm install
+    - pnpm build
+  artifacts:
+    paths:
+      - dist
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+
+deploy:
+  stage: deploy
+  script:
+    - ssh gitlab_deploy@deploy.inner.tinyplan.cn "cd /usr/local/nginx/html && rm -rf portal/*"
+    - scp -r dist/* gitlab_deploy@deploy.inner.tinyplan.cn:/usr/local/nginx/html/portal
+    - ssh gitlab_deploy@deploy.inner.tinyplan.cn "cd /usr/local/nginx/html && chown -R gitlab_deploy:nginx portal/* && chown -R 774 portal/*"
