@@ -18,6 +18,9 @@ build:
   script:
     - pnpm install
     - pnpm build
+  artifacts:
+    paths:
+      - dist
 
 deploy:
   stage: deploy
