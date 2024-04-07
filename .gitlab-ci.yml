@@ -14,16 +14,16 @@ build:
     - node -v
     - npm -v
     - pnpm -v
+    - pwd
   script:
     - pnpm install
     - pnpm build
-  artifacts:
-    paths:
-      - dist
 
 deploy:
   stage: deploy
+  before_script: 
+    - pwd
   script:
     - ssh gitlab_deploy@deploy.inner.tinyplan.cn "cd /usr/local/nginx/html && rm -rf portal/*"
     - scp -r dist/* gitlab_deploy@deploy.inner.tinyplan.cn:/usr/local/nginx/html/portal
-    - ssh gitlab_deploy@deploy.inner.tinyplan.cn "cd /usr/local/nginx/html && chown -R gitlab_deploy:nginx portal/* && chown -R 774 portal/*"
+    # - ssh gitlab_deploy@deploy.inner.tinyplan.cn "cd /usr/local/nginx/html && chown -R gitlab_deploy:nginx portal/* && chown -R 774 portal/*"
