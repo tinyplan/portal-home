@@ -11,8 +11,9 @@ cache:
 build:
   stage: build
   before_script:
-    - corepack enable
-    - corepack prepare pnpm@8.15.6 --activate
+    - node -v
+    - npm -v
+    - pnpm -v
     - pnpm config set store-dir .pnpm-store
   script:
     - pnpm install
