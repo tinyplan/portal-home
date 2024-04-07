@@ -1,5 +1,10 @@
 [
   {
+    "icon": "Anchor",
+    "name": "OpenWRT",
+    "link": "http://openwrt.inner.tinyplan.cn/"
+  },
+  {
     "icon": "GlassCheers",
     "name": "磁力下载",
     "link": "http://torrent.inner.tinyplan.cn/"
