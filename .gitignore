@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+public/font/required-word.txt
 
 # Editor directories and files
 .vscode/*
