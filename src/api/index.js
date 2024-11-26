@@ -1,9 +1,9 @@
 // import axios from "axios";
 import fetchJsonp from "fetch-jsonp";
 
-const enablePlayer = false;
-const enableHitokoto = false;
-const enableWeather = false;
+const enablePlayer = import.meta.env.VITE_SONG_ENABLE === 'true';
+const enableHitokoto = import.meta.env.VITE_HITOKOTO_ENABLE === 'true';
+const enableWeather = import.meta.env.VITE_WEATHER_ENABLE  === 'true';
 
 /**
  * 音乐播放器
@@ -101,7 +101,20 @@ export const getWeather = async (key, city) => {
 // https://api.oioweb.cn/doc/weather/GetWeather
 export const getOtherWeather = async () => {
   if (!enableWeather) {
-    return {};
+    return {
+      "result": {
+        "city": {
+          "City": "杭州"
+        },
+        "condition": {
+          "day_weather": "晴",
+          "min_degree": "22.0",
+          "max_degree": "23.1",
+          "day_wind_direction": "东北风",
+          "day_wind_power": "2"
+        }
+      }
+    };
   }
   const res = await fetch("https://api.oioweb.cn/api/weather/GetWeather");
   return await res.json();
