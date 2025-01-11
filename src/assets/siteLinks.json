@@ -2,16 +2,16 @@
   {
     "icon": "Anchor",
     "name": "OpenWRT",
-    "link": "http://openwrt.inner.tinyplan.cn/"
+    "link": "/openwrt"
   },
   {
     "icon": "GlassCheers",
     "name": "磁力下载",
-    "link": "http://torrent.inner.tinyplan.cn/"
+    "link": "/torrent"
   },
   {
     "icon": "Gitlab",
     "name": "代码仓库",
-    "link": "http://repo.inner.tinyplan.cn/"
+    "link": "/repo"
   }
 ]
